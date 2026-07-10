@@ -1,0 +1,666 @@
+\section{Sucesiones y Series Numéricas}
+
+\subsection{Concepto de serie y convergencia}
+
+\begin{definition}{Serie}{def_serie}
+    Sea $\{a_n\}_{n\in\mathbb{N}}$ una sucesión. Al sumar los términos de la sucesión se obtiene una serie infinita o simplemente serie y denotaremos:
+    \[ \sum_{n=1}^{\infty}a_n = a_1 + a_2 + \dots + a_n + \dots \]
+\end{definition}
+
+No confundir una serie con sumatoria: una sumatoria suma una cantidad finita de términos, en cambio una serie suma todos los términos de una sucesión.
+
+Observar que sumar infinitas cantidades no es algo sencillo, ¿podemos garantizar que esta suma existe?, además pueden ocurrir situaciones extrañas, por ejemplo, si queremos conocer la suma de $\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}$, es decir:
+\[ 1 + (-1) + 1 + (-1) + \dots \]
+La suma podría ser $1$ ó $0$, dependiendo de cómo se sume. En efecto:
+\[ 1 + [(-1) + 1] + [(-1) + 1] + \dots = 1 \]
+\[ [1 + (-1)] + [1 + (-1)] + \dots = 0 \]
+Para evitar ambigüedades, es necesario precisar qué se entiende como suma de una serie.
+
+\begin{definition}{Sucesión de sumas parciales y convergencia}{def_convergencia}
+    A partir de una sucesión $\{a_n\}_{n\in\mathbb{N}}$, podemos formar una nueva sucesión $\{S_N\}_{N\in\mathbb{N}}$, donde:
+    \begin{align*}
+        S_1 &= a_1 \\
+        S_2 &= a_1 + a_2 \\
+        S_3 &= a_1 + a_2 + a_3 \\
+            &\vdots \\
+        S_N &= a_1 + a_2 + \dots + a_N = \sum_{n=1}^{N}a_n
+    \end{align*}
+    Esta nueva sucesión se conoce como \textbf{sucesión de sumas parciales} de $a_n$.
+    Diremos que la serie $\displaystyle\sum_{n=1}^{\infty}a_n$ \textbf{converge} si el límite de la suma parcial $N$-ésima existe:
+    \[ \lim_{N\to\infty}S_N = \lim_{N\to\infty}\sum_{n=1}^{N}a_n = \sum_{n=1}^{\infty}a_n = S \in \mathbb{R} \]
+    En tal caso, diremos que $S$ es la suma de la serie. En caso contrario la serie diverge.
+\end{definition}
+
+\begin{example}{Análisis de convergencia por sumas parciales}{ej:serie_1}
+    Analice la convergencia de las siguientes series:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle\sum_{n=1}^{\infty} n$
+        \item $\displaystyle\sum_{n=1}^{\infty} \ln\left(\frac{n}{n+1}\right)$
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Sumas parciales: $S_1 = 1$, $S_2 = 1+2=3$, $S_3 = 1+2+3=6$, \dots, $S_n = \displaystyle\sum_{i=1}^{n}i = \frac{n(n+1)}{2}$.\\
+        Como $\displaystyle\lim_{n\to\infty}S_n = \lim_{n\to\infty}\frac{n(n+1)}{2} = +\infty$, la serie $\displaystyle \sum_{n=1}^{\infty}{n}$ diverge.
+        
+        \item Sumas parciales:
+        \begin{align*}
+            S_1 &= \sum_{n=1}^{1}\ln\left(\frac{n}{n+1}\right) = \ln\left(\frac{1}{2}\right) \\
+            S_2 &= \sum_{n=1}^{2}\ln\left(\frac{n}{n+1}\right) = \ln\left(\frac{1}{2}\right) + \ln\left(\frac{2}{3}\right) = \ln\left(\frac{1}{2}\cdot\frac{2}{3}\right) = \ln\left(\frac{1}{3}\right) \\
+            S_3 &= \sum_{n=1}^{3}\ln\left(\frac{n}{n+1}\right) = \ln\left(\frac{1}{2}\right) + \ln\left(\frac{2}{3}\right) + \ln\left(\frac{3}{4}\right) = \ln\left(\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\right) = \ln\left(\frac{1}{4}\right) \\
+            &\vdots \\
+            S_N &= \sum_{n=1}^{N}\ln\left(\frac{n}{n+1}\right) = \ln\left(\frac{1}{2}\cdot\frac{2}{3}\cdot\frac{3}{4}\cdots\frac{N}{N+1}\right) = \ln\left(\frac{1}{N+1}\right)
+        \end{align*}
+        Como $\displaystyle\lim_{N\to\infty}S_N = \lim_{N\to\infty}\ln\left(\frac{1}{N+1}\right) = -\infty$, la serie $\displaystyle\sum_{n=1}^{\infty}\ln\left(\frac{n}{n+1}\right)$ diverge.
+    \end{enumerate}
+\end{soln}
+
+\begin{proposition}{Propiedades de las series}{prop_series}
+    Si $\displaystyle\sum_{n=1}^{\infty}a_n$ y $\displaystyle\sum_{n=1}^{\infty}b_n$ son convergentes y $c \in \mathbb{R}$, entonces:
+    \begin{enumerate}
+        \item $\displaystyle\sum_{n=1}^{\infty}(a_n \pm b_n) = \sum_{n=1}^{\infty}a_n \pm \sum_{n=1}^{\infty}b_n$
+        \item $\displaystyle\sum_{n=1}^{\infty}(c \cdot a_n) = c\sum_{n=1}^{\infty}a_n$
+    \end{enumerate}
+\end{proposition}
+
+\begin{theorem}{Condición de convergencia}{teo_condicion_convergencia}
+    Si $\displaystyle\sum_{n=1}^{\infty}a_n$ converge $\Longrightarrow \displaystyle \lim_{n\to\infty}a_n = 0$.
+\end{theorem}
+
+\begin{remark}{El recíproco y el contrarrecíproco}{}
+    El teorema solamente nos dice que si la serie converge, entonces el término general de la serie debe tender a cero. Sin embargo, el recíproco no es cierto, es decir, que si el término general de la serie tiende a cero, entonces la serie converge. De hecho, existen series cuyos términos tienden a cero pero divergen, por ejemplo: la serie $\displaystyle \sum_{n=1}^{\infty}{\dfrac{1}{n}}$.
+    
+    El contrarrecíproco de dicho teorema resulta de mayor utilidad: si el término general de la serie no tiende a cero, entonces la serie diverge.
+\end{remark}
+
+\begin{theorem}{Criterio de divergencia}{teo_criterio_divergencia}
+    Si $\displaystyle\lim_{n\to\infty}a_n \neq 0 \Longrightarrow \sum_{n=1}^{\infty}a_n$ diverge.
+\end{theorem}
+
+Por ejemplo, la serie $\displaystyle\sum_{n=1}^{\infty}e^{\frac{1}{n}}$ diverge, pues $\displaystyle\lim_{n\to\infty}e^{\frac{1}{n}} = 1 \neq 0$.
+
+\subsection{Series notables y descomposiciones}
+
+\subsubsection*{Serie telescópica}
+Considere una serie de la forma $\displaystyle\sum_{n=1}^{\infty}(b_n - b_{n+1})$, donde las sumas parciales son:
+\begin{align*}
+    S_1 &= b_1 - b_2 \\
+    S_2 &= (b_1 - b_2) + (b_2 - b_3) = b_1 - b_3 \\
+    S_3 &= (b_1 - b_2) + (b_2 - b_3) + (b_3 - b_4) = b_1 - b_4 \\
+    &\vdots \\
+    S_N &= (b_1 - b_2) + (b_2 - b_3) + \dots + (b_N - b_{N+1}) = b_1 - b_{N+1}
+\end{align*}
+Luego, haciendo tender $N\to \infty$ se tiene:
+\[ \displaystyle\lim_{N\to\infty}S_N = \lim_{N\to\infty}(b_1 - b_{N+1}) = b_1 - \lim_{N\to\infty}b_{N+1}. \]
+
+\begin{definition}{Serie telescópica}{def_serie_telescopica}
+    Una serie de la forma $\displaystyle\sum_{n=1}^{\infty}(b_n - b_{n+1})$ se llama \textbf{serie telescópica}, y cumple que:
+    \begin{itemize}
+        \item Si $\{b_n\}_{n \in \mathbb{N}}$ converge, entonces la serie converge y $\displaystyle\sum_{n=1}^{\infty}(b_n - b_{n+1}) = b_1 - \lim_{n\to\infty}b_n$.
+        \item Si $\{b_n\}_{n \in \mathbb{N}}$ diverge, entonces $\displaystyle\sum_{n=1}^{\infty}(b_n - b_{n+1})$ diverge.
+    \end{itemize}
+\end{definition}
+
+Habitualmente para este tipo de series hay que realizar descomposiciones por fracciones parciales para obtener la forma telescópica.
+
+\begin{example}{Convergencia de serie telescópica básica}{ej:telescopica_1}
+    Analice la convergencia de $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)}$.
+\end{example}
+
+\begin{soln}
+    Notemos que $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+1)} = \sum_{n=1}^{\infty}\left(\frac{1}{n} - \frac{1}{n+1}\right)$. Luego algunas sumas parciales corresponden a:
+    \begin{align*}
+        S_1 &= 1 - \frac{1}{2} \\
+        S_2 &= 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} = 1 - \frac{1}{3} \\
+        S_3 &= 1 - \frac{1}{2} + \frac{1}{2} - \frac{1}{3} + \frac{1}{3} - \frac{1}{4} = 1 - \frac{1}{4} \\
+        &\vdots \\
+        S_n &= 1 - \frac{1}{n+1}
+    \end{align*}
+    Como $\displaystyle\lim_{n\to\infty}S_n = 1 - \lim_{n\to\infty}\frac{1}{n+1} = 1 \Longrightarrow \sum_{n=1}^{\infty}\frac{1}{n(n+1)} = 1$.
+\end{soln}
+
+\begin{example}{Telescópica por fracciones parciales}{ej:telescopica_2}
+    Considere la serie $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2+3n+2}$.
+    \begin{enumerate}
+        \item Demuestre que la serie es de tipo telescópica.
+        \item Defina la sucesión de sumas parciales.
+        \item Analice su convergencia e indique su suma si corresponde.
+    \end{enumerate}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Utilizando fracciones parciales:
+        \[ \frac{1}{n^2+3n+2} = \frac{1}{(n+1)(n+2)} = \frac{A}{n+1} + \frac{B}{n+2} = \frac{A(n+2) + B(n+1)}{(n+1)(n+2)} \implies 1 = A(n+2) + B(n+1) \]
+        Si $n = -1 \implies A = 1$. Si $n = -2 \implies B = -1$. Por lo tanto, la serie es telescópica y su forma correspondiente es:
+        \[ \displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2+3n+2} = \sum_{n=1}^{\infty}\left(\frac{1}{n+1} - \frac{1}{n+2}\right). \]
+        
+        \item Sumas parciales:
+        \begin{align*}
+            S_1 &= \frac{1}{2} - \frac{1}{3} \\
+            S_2 &= \left(\frac{1}{2} - \frac{1}{3}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) = \frac{1}{2} - \frac{1}{4} \\
+            S_3 &= \left(\frac{1}{2} - \frac{1}{3}\right) + \left(\frac{1}{3} - \frac{1}{4}\right) + \left(\frac{1}{4} - \frac{1}{5}\right) = \frac{1}{2} - \frac{1}{5} \\
+            &\vdots \\
+            S_n &= \frac{1}{2} - \frac{1}{n+2}
+        \end{align*}
+        
+        \item Calculamos el límite de la suma parcial $S_n$:
+        \[ \lim_{n\to\infty}S_n = \frac{1}{2} - \lim_{n\to\infty}\frac{1}{n+2} = \frac{1}{2}. \]
+        Por lo tanto, la serie converge y además su suma corresponde a:
+        \[ \displaystyle \sum_{n=1}^{\infty}\frac{1}{n^2+3n+2} = \frac{1}{2}. \]
+    \end{enumerate}
+\end{soln}
+
+\subsubsection*{Serie geométrica}
+Es de la forma: $\displaystyle\sum_{n=0}^{\infty}ar^n$ con $r \in \mathbb{R}$. Al número $r$ lo llamamos \textbf{razón} de la serie. Las sumas parciales corresponden a:
+\[ S_n = a + ar + ar^2 + ar^3 + \dots + ar^{n-1} + ar^n \]
+Multiplicando por $r$:
+\[ rS_n = ra + r^2a + r^3a + \dots + r^n a + r^{n+1}a \]
+Restando ambas expresiones y factorizando por $S_n$:
+\[ S_n(1-r) = a - ar^{n+1} \implies S_n = a\left(\frac{1-r^{n+1}}{1-r}\right) \]
+Luego, haciendo tender $n\to \infty$ se tiene:
+\[ \displaystyle\lim_{n\to\infty}S_n = \lim_{n\to\infty}a\left(\frac{1-r^{n+1}}{1-r}\right). \]
+
+\begin{definition}{Serie geométrica}{def_serie_geometrica}
+    Una serie de la forma $\displaystyle\sum_{n=0}^{\infty}ar^n$ se llama \textbf{serie geométrica}, y cumple que:
+    \begin{itemize}
+        \item Si $|r| < 1$, entonces la serie converge y $\displaystyle\sum_{n=0}^{\infty}ar^n = \frac{a}{1-r}$.
+        \item Si $|r| \ge 1$, entonces la serie diverge.
+    \end{itemize}
+\end{definition}
+
+\begin{example}{Cálculo de series geométricas}{ej:geometrica_1}
+    Analice la convergencia de las siguientes series. Calcule su valor de ser posible:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle\sum_{n=0}^{\infty}2\left(\frac{2}{5}\right)^n$,
+        \item $\displaystyle\sum_{n=1}^{\infty}\frac{3^{1-2n}}{2^n}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Se tiene que $|r| = \left|\frac{2}{5}\right| = \frac{2}{5} < 1$, luego la serie converge y:
+        \[ \sum_{n=0}^{\infty}2\left(\frac{2}{5}\right)^n = \frac{2}{1-\frac{2}{5}} = \frac{2}{\frac{3}{5}} = \frac{10}{3} \]
+        
+        \item Notemos que:
+        \[ \sum_{n=1}^{\infty}\frac{3^{1-2n}}{2^n} = \sum_{n=1}^{\infty}\frac{3 \cdot 3^{-2n}}{2^n} = \sum_{n=1}^{\infty}3\left(\frac{1}{9^n \cdot 2^n}\right) = \sum_{n=1}^{\infty}3\left(\frac{1}{18^n}\right) = \sum_{n=1}^{\infty}3\left(\frac{1}{18}\right)^n \]
+        Pero fijarse en el índice, comienza desde $1$ y debe ser desde $0$. Debemos acomodar la serie para que el índice comience desde $0$:
+        \[ \sum_{n=1}^{\infty}3\left(\frac{1}{18}\right)^n = \left[3 + \sum_{n=1}^{\infty}3\left(\frac{1}{18}\right)^n\right] - 3 = \sum_{n=0}^{\infty}3\left(\frac{1}{18}\right)^{n+1} - 3 = \frac{3}{1-\frac{1}{18}} - 3 = \frac{3}{17} \]
+        Dado que $|r| = \frac{1}{18} < 1$, la serie converge y su suma es $\frac{3}{17}$.
+    \end{enumerate}
+\end{soln}
+
+\begin{remark}{Reindexar una serie}{obs_reindexar}
+    Reindexar una serie es una técnica que consiste en cambiar el índice de la serie para facilitar su análisis o cálculo. Es posible siempre y cuando se preserve el orden de sus términos. No cambia la convergencia, ni su valor:
+    \[ \sum_{n=k}^{\infty}a_n = \sum_{n=k+h}^{\infty}a_{n-h} = \sum_{n=k-h}^{\infty}a_{n+h} \]
+    En el ejemplo anterior:
+    \[ \sum_{n=1}^{\infty}3\left(\frac{1}{18}\right)^n = \sum_{n=0}^{\infty}3\left(\frac{1}{18}\right)^{n+1} = \sum_{n=0}^{\infty}3\left(\frac{1}{18}\right)\left(\frac{1}{18}\right)^n = \frac{\frac{1}{6}}{1-\frac{1}{18}} = \frac{3}{17} \]
+\end{remark}
+
+\subsection{Criterios de convergencia para series de términos no negativos}
+
+Los siguientes criterios de convergencia se aplican a series de términos no negativos, es decir, a series que contienen términos positivos o nulos.
+
+\subsubsection{Criterio de la integral}
+
+\begin{theorem}{Criterio de la integral}{criterio_integral}
+    Sea $\{ a_{n} \}_{n \in \mathbb{N}}$ una sucesión de términos positivos y suponga que $a_{n}=f(n)$, donde $f$ es una función decreciente, positiva y continua en $[1, \infty)$. Entonces:
+    \begin{equation}
+        \sum_{n=1}^{\infty}a_{n} \text{ converge} \Longleftrightarrow \int_{1}^{\infty}f(x)dx \text{ converge}
+    \end{equation}
+\end{theorem}
+
+\begin{example}{Aplicación del criterio de la integral}{ej:criterio_integral_1}
+    Analice con el criterio de la integral la convergencia de las siguientes series:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty}e^{-n}$,
+        \item $\displaystyle \sum_{n=1}^{\infty}\frac{e^{\arctan(n)}}{n^{2}+1}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Para la serie $\displaystyle \sum_{n=1}^{\infty}e^{-n}$ se define $f(x):=e^{-x}$ la cual es continua, decreciente y positiva en $[1, \infty)$. Además:
+        \[ \int_{1}^{\infty}e^{-x}dx = \lim_{b\to\infty}\int_{1}^{b}e^{-x}dx = \lim_{b\to\infty} -e^{-x}\Big|_{1}^{b} = \lim_{b\to\infty} -(e^{-b}-e^{-1}) = e^{-1} \]
+        Como $\displaystyle \int_{1}^{\infty}e^{-x}dx$ converge, entonces $\displaystyle \sum_{n=1}^{\infty}e^{-n}$ también converge.
+        
+        \item Sea $f(x) = \dfrac{e^{\arctan(x)}}{x^{2}+1}$, la cual es una función continua, positiva y decreciente pues
+        \[ f^{\prime}(x) = \frac{e^{\arctan(x)}\cdot\frac{1}{x^{2}+1}\cdot(x^{2}+1) - e^{\arctan(x)}\cdot 2x}{(x^{2}+1)^{2}} = -\frac{e^{\arctan(x)}}{(x^{2}+1)^{2}}(2x-1) < 0 \]
+        Entonces:
+        \[ \int_{1}^{\infty}\frac{e^{\arctan(x)}}{x^{2}+1}dx = \lim_{b\to\infty}\int_{1}^{b}\frac{e^{\arctan(x)}}{x^{2}+1}dx \]
+        Haciendo $u=\arctan(x)$ y $du=\dfrac{1}{x^{2}+1}dx$, con los límites $x=b \Rightarrow u=\arctan(b)$ y $x=1 \Rightarrow u=\dfrac{\pi}{4}$:
+        \[ \lim_{b\to\infty}\int_{\frac{\pi}{4}}^{\arctan(b)}e^{u}du = \lim_{b\to\infty}e^{u}\Big|_{\frac{\pi}{4}}^{\arctan(b)} = \lim_{b\to\infty}(e^{\arctan(b)} - e^{\frac{\pi}{4}}) = e^{\frac{\pi}{2}} - e^{\frac{\pi}{4}} \]
+        Como la integral converge, entonces por el criterio de la integral $\displaystyle \sum_{n=1}^{\infty}\frac{e^{\arctan(n)}}{n^{2}+1}$ también converge.
+    \end{enumerate}
+\end{soln}
+
+\begin{remark}{Sobre el valor de convergencia y la Serie $p$}{obs_criterio_integral}
+    \begin{itemize}
+        \item La serie y la integral no necesariamente convergen al mismo valor.
+        \item \textbf{(Serie -p)}: Utilizando el criterio de la integral, se puede probar que
+        \[ \sum_{n=1}^{\infty}\frac{1}{n^{p}} = \begin{cases} \text{ Converge} & ,\text{si } p > 1 \\ & \\ \text{ Diverge} & ,\text{si } p \le 1 \end{cases}.\]
+        Este tipo de series será muy útil para comparar con otras series y así determinar su convergencia o divergencia.
+    \end{itemize}
+\end{remark}
+
+\begin{problem}{}{ej:criterio_integral_2}
+    Analice la convergencia de las siguientes series utilizando el criterio de la integral:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle \sum_{n=1}^{\infty}\frac{1}{\sqrt{n}}$
+            \item $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n^{2}+1}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\subsubsection{Criterio de comparación directa}
+
+\begin{theorem}{Criterio de comparación directa}{criterio_comparacion_directa}
+    Sean $\{ a_{n} \}_{n \in \N}$, $\{ b_{n} \}_{n \in \N}\in \mathbb{R}$ dos sucesiones de términos no negativos tales que $\forall n \ge N : 0 \le a_{n} \le b_{n}$, para algún $N$. Se cumple que:
+    \begin{itemize}
+        \item Si $\displaystyle \sum_{n=1}^{\infty}b_{n}$ converge, entonces $\displaystyle \sum_{n=1}^{\infty}a_{n}$ converge.
+        \item Si $\displaystyle \sum_{n=1}^{\infty}a_{n}$ diverge, entonces $\displaystyle \sum_{n=1}^{\infty}b_{n}$ diverge.
+    \end{itemize}
+\end{theorem}
+
+\begin{example}{Uso de cotas superiores e inferiores}{ej:criterio_comparacion_directa_1}
+    Estudie la convergencia de las siguientes series:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty}\frac{\ln(n)}{n}$,
+        \item $\displaystyle \sum_{n=1}^{\infty}\frac{1}{1+6^{n+1}}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Primero se observa que: $1 < \ln(n)$, $\forall n \ge 3 \implies \displaystyle \sum_{n=3}^{\infty}\frac{1}{n} < \displaystyle \sum_{n=3}^{\infty}\frac{\ln(n)}{n}$. Además, notemos que hay que restar los primeros términos de la serie $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n}$ para que la comparación sea válida, es decir:
+        \[ \sum_{n=3}^{\infty}\frac{1}{n} = \sum_{n=1}^{\infty}\frac{1}{n} - \sum_{n=1}^{2}\frac{1}{n}, \]
+        y como $\displaystyle \sum_{n=1}^{\infty}\frac{1}{n}$ es una Serie-p con $p=1$, entonces diverge y por criterio de comparación directa:
+        \[ \sum_{n=1}^{\infty}\frac{\ln(n)}{n} = \sum_{n=1}^{2}\frac{\ln(n)}{n} + \sum_{n=3}^{\infty}\frac{\ln(n)}{n} = \frac{\ln(2)}{2} + \sum_{n=3}^{\infty}\frac{\ln(n)}{n} \]
+        diverge.
+        
+        \item Vemos que:
+        \[ \frac{1}{1+6^{n+1}} < \frac{1}{6^{n+1}} = \frac{1}{6}\left(\frac{1}{6}\right)^{n}, \quad \forall n \ge 1 \implies \sum_{n=1}^{\infty}\frac{1}{1+6^{n+1}} < \frac{1}{6}\sum_{n=1}^{\infty}\left(\frac{1}{6}\right)^{n}. \]
+        Además $\displaystyle \sum_{n=1}^{\infty}\left(\frac{1}{6}\right)^{n} = \displaystyle \sum_{n=0}^{\infty}\left(\frac{1}{6}\right)^{n} - 1$ y la serie $\displaystyle \sum_{n=0}^{\infty}\left(\frac{1}{6}\right)^{n}$ converge por ser serie geométrica con $\abs{r}=\dfrac{1}{6}<1$. Luego $\displaystyle \sum_{n=1}^{\infty}\left(\frac{1}{6}\right)^{n}$ converge y por comparación directa $\displaystyle \sum_{n=1}^{\infty}\frac{1}{1+6^{n+1}}$ también converge.
+    \end{enumerate}
+\end{soln}
+
+\begin{problem}{Ejercicios de comparación directa}{ej:criterio_comparacion_directa_3}
+    Decida si las siguientes series convergen utilizando el criterio de comparación directa:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^{4}+\sqrt{n}+1}$
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{6^{n}}{n8^{n}+\sqrt{n}}$
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{7}{\sqrt{n}-\frac{1}{2}}$
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{2\sin(n!)}{2n^{2}+1}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\subsubsection{Criterio de comparación por paso al límite}
+
+\begin{theorem}{Criterio de comparación por paso al límite}{criterio_comparacion_limite}
+    Sean $\{ a_{n} \}_{n \in \N}$, $\{ b_{n} \}_{n \in \N}$ dos sucesiones de términos positivos tales que $\displaystyle \lim_{n \to \infty} \frac{a_n}{b_n} = L$. Se cumple que:
+    \begin{itemize}
+        \item Si $L \in \R^{+}$, entonces $\displaystyle \sum_{n=1}^{\infty}a_{n}$ y $\displaystyle \sum_{n=1}^{\infty}b_{n}$ convergen, o bien, ambas series divergen.
+        \item Si $L = 0$ y $\displaystyle \sum_{n=1}^{\infty}b_{n}$ converge, entonces $\displaystyle \sum_{n=1}^{\infty}a_{n}$ converge.
+        \item Si $L = +\infty$ y $\displaystyle \sum_{n=1}^{\infty}b_{n}$ diverge, entonces $\displaystyle \sum_{n=1}^{\infty}a_{n}$ diverge.
+    \end{itemize}
+\end{theorem}
+
+\begin{example}{Comportamiento asintótico de términos generales}{ej:criterio_comparacion_limite_1}
+    Analice la convergencia de las siguientes series mediante comparación por paso al límite:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty}{\frac{\sqrt{n}\, 4^{2n}}{5n-3}}$,
+        \item $\displaystyle \sum_{n=1}^{\infty}\frac{\sqrt[3]{n}}{4n^2 +3n+2}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Consideremos los términos generales $a_n = \dfrac{\sqrt{n}\, 4^{2n}}{5n-3}$ y $b_n = \frac{1}{\sqrt{n}}$. Se tiene el límite:
+        \[ L = \lim_{n \to \infty} \frac{a_n}{b_n} = \lim_{n \to \infty} \frac{\dfrac{\sqrt{n}\, 4^{2n}}{5n-3}}{\sqrt{n}} = \lim_{n \to \infty} \frac{n\, 4^{2n}}{5n-3} = \lim_{n \to \infty} \frac{4^{2n}}{\l 5-\frac{3}{n} \r} = +\infty. \]
+        Como $\displaystyle \sum_{n=1}^{\infty} \frac{1}{\sqrt{n}}$ es una serie-p con $p = \frac{1}{2} < 1$, entonces diverge. Por tanto, por el criterio de comparación por paso al límite, la serie original también diverge.
+        
+        \item Utilizando los términos generales $a_n = \dfrac{\sqrt[3]{n}}{4n^2 +3n+2}$ y $b_n = \dfrac{1}{n^{5/3}}$. Se tiene el límite:
+        \[ L = \lim_{n \to \infty} \frac{a_n}{b_n} = \lim_{n \to \infty} \frac{\dfrac{\sqrt[3]{n}}{4n^2 +3n+2}}{\dfrac{1}{n^{5/3}}} = \lim_{n \to \infty} \frac{n^{5/3} \cdot \sqrt[3]{n}}{4n^2 +3n+2} = \lim_{n \to \infty} \frac{n^2}{4n^2 +3n+2} = \frac{1}{4}. \]
+        Como $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^{5/3}}$ es una serie-p con $p = \frac{5}{3} > 1$, entonces converge. Por tanto, por el criterio de comparación por paso al límite, la serie original también converge.
+    \end{enumerate}
+\end{soln}
+
+\begin{problem}{Ejercicios de comparación al límite}{ej:criterio_comparacion_limite_3}
+    Analice si las siguientes series convergen o divergen:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{4n-3}{n^3+3n^2+1}$
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{5n}{\sqrt{2n^4+1}}$
+            \item $\displaystyle\sum_{n=1}^{\infty}\sin{\l \dfrac{\pi}{n} \r}$
+            \item $\displaystyle\sum_{n=1}^{\infty}\frac{n^2}{n^5 +\sqrt{n}}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\subsection{Criterios de convergencia para series de términos de signo variable}
+
+Los siguientes criterios se aplican a series que pueden contener términos negativos o que cambian de signo dinámicamente, tales como las \textbf{series alternantes} de la forma $\displaystyle \sum_{n=1}^{\infty}(-1)^n a_n$ o $\displaystyle \sum_{n=1}^{\infty}(-1)^{n+1} a_n$.
+
+\subsubsection{Criterio de Leibniz}
+
+\begin{theorem}{Criterio de Leibniz}{criterio_leibniz}
+    Sea $\{ a_{n} \}_{n \in \N}$ una sucesión de términos positivos tales que:
+    \begin{itemize}
+        \item $a_n \geq a_{n+1}$ para todo $n \in \N$,
+        \item $\displaystyle \lim_{n \to \infty} a_n = 0$.
+    \end{itemize}
+    Entonces, las series $\displaystyle \sum_{n=1}^{\infty}(-1)^n a_n$ y $\displaystyle \sum_{n=1}^{\infty}(-1)^{n+1} a_n$ son convergentes.
+\end{theorem}
+
+\begin{example}{Análisis de series alternantes}{ej:criterio_leibniz_1}
+    Estudie la convergencia de las siguientes series alternantes:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty}\frac{(-1)^{n}}{\sqrt{n}}$,
+        \item $\displaystyle \sum_{n=1}^{\infty}{(-1)^{n+1} \frac{3n+2}{4n^2-3}}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Debemos verificar las condiciones sobre $a_n = \dfrac{1}{\sqrt{n}}$:
+        \begin{itemize}
+            \item Definimos $f(n) := a_n = \dfrac{1}{\sqrt{n}}$, la cual es una función positiva y decreciente, pues $f^{\prime}(n) = -\dfrac{1}{2n^{3/2}} < 0$ para todo $n \in \N$.
+            \item $\displaystyle \lim_{n \to \infty} a_n = \displaystyle \lim_{n \to \infty} \frac{1}{\sqrt{n}} = 0$.
+        \end{itemize}
+        Como se cumplen ambas, por Leibniz, la serie alternante converge.
+        
+        \item Sea el término general $a_n = \dfrac{3n+2}{4n^2-3}$. Verificamos:
+        \begin{itemize}
+            \item Definimos $f(n) := a_n$, que es positiva y decreciente para todo $n\in\mathbb{N}$ ya que:
+            \[ f^{\prime}(n) = \dfrac{3 (4n^2 -3) - 8n(3n+2)}{(4n^2-3)^2} = \dfrac{- \l 12n^2+16n+9 \r}{(4n^2-3)^2} < 0. \]
+            \item $\displaystyle \lim_{n \to \infty} a_n = \displaystyle \lim_{n \to \infty} \frac{3n+2}{4n^2-3} = 0$.
+        \end{itemize}
+        Cumpliéndose las condiciones, la serie converge por el criterio de Leibniz.
+    \end{enumerate}
+\end{soln}
+
+\begin{problem}{Ejercicios de series alternantes}{}
+    Estudie la convergencia de las siguientes series alternantes:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle \sum_{n=1}^{\infty}(-1)^{n}\frac{n+2}{5^n}$
+            \item $\displaystyle \sum_{n=1}^{\infty}\frac{\cos{\l \pi n \r} \l n+2 \r}{\sqrt{n^2 +n}}$
+            \item $\displaystyle \sum_{n=1}^{\infty}(-1)^{n} \frac{n^2}{n^2+1}$
+            \item $\displaystyle \sum_{n=1}^{\infty}(-1)^{n} \frac{2^n \, \l \frac{1}{2} \r^n}{2n-1}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\subsubsection{Criterio de la razón y de la raíz}
+
+\begin{theorem}{Criterio de la razón}{criterio_razon}
+    Sea $\displaystyle \sum_{n=1}^{\infty} a_n$ una serie y suponga que $r = \displaystyle \lim_{n \to \infty} \abs{\frac{a_{n+1}}{a_n}}$ existe. Entonces:
+    \begin{itemize}
+        \item Si $r < 1$, entonces la serie es convergente.
+        \item Si $r > 1$, entonces la serie es divergente.
+        \item Para $r = 1$ el criterio no proporciona información.
+    \end{itemize}
+\end{theorem}
+
+\begin{example}{Series con factoriales y potencias}{ej:criterio_razon_1}
+    Estudie la convergencia de las siguientes series utilizando el criterio de la razón:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty} \frac{n!}{n^n}$,
+        \item $\displaystyle \sum_{n=1}^{\infty}(-1)^n \frac{n!}{2^n}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Calculamos el límite de la razón:
+        \[ r = \lim_{n \to \infty} \left| \frac{a_{n+1}}{a_n} \right| = \lim_{n \to \infty} \left| \frac{(n+1)!}{(n+1)^{n+1}} \cdot \frac{n^n}{n!} \right| = \lim_{n \to \infty} \left( \frac{n}{n+1} \right)^n = \frac{1}{e} < 1. \]
+        Como $r = \frac{1}{e} < 1$, por el criterio de la razón, la serie converge.
+        
+        \item Calculamos el límite del cociente en valor absoluto:
+        \[ r = \lim_{n \to \infty} \left| \frac{(-1)^{n+1} (n+1)!}{2^{n+1}} \cdot \frac{2^n}{(-1)^n n!} \right| = \lim_{n \to \infty} \frac{n+1}{2} = +\infty > 1. \]
+        Como $r = +\infty > 1$, por el criterio de la razón, la serie diverge.
+    \end{enumerate}
+\end{soln}
+
+\begin{remark}{Casos no concluyentes ($r=1$)}{obs_criterio_razon}
+    El criterio de la razón no proporciona información para $r=1$. Por ejemplo, la serie $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n}$ verifica $r = 1$ y diverge, mientras que la serie $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n^2}$ también verifica $r = 1$, pero converge. Cuando ocurre esto, es obligatorio recurrir a otros criterios alternativos.
+\end{remark}
+
+\begin{problem}{Ejercicios del criterio de la razón}{ej:criterio_razon_4}
+    Analice la convergencia de las siguientes series mediante el criterio de la razón:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{1}{n!}$
+            \item $\displaystyle \sum_{n=0}^{\infty} \frac{n!}{e^{n+1}}$
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{n^2}{3^{n+2}}$
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^{n+1}}{n \, 5^n}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\begin{theorem}{Criterio de la raíz}{criterio_raiz}
+    Sea $\displaystyle \sum_{n=1}^{\infty} a_n$ una serie y suponga que $r = \displaystyle \lim_{n \to \infty} \sqrt[n]{|a_n|}$ existe. Entonces:
+    \begin{itemize}
+        \item Si $r < 1$, entonces la serie es convergente.
+        \item Si $r > 1$, entonces la serie es divergente.
+        \item Para $r = 1$ el criterio no proporciona información.
+    \end{itemize}
+\end{theorem}
+
+\begin{example}{}{ej:criterio_raiz_1}
+    Analice si las siguientes series convergen o divergen utilizando el criterio de la raíz:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty} \l \frac{\ln{(n)}}{n} \r^n$,
+        \item $\displaystyle \sum_{n=1}^{\infty} \frac{2^n}{n^n}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Calculamos el límite aplicando la raíz n-ésima:
+        \[ r = \lim_{n \to \infty} \sqrt[n]{\left|\frac{\ln(n)}{n}\right|^n} = \lim_{n \to \infty} \frac{\ln(n)}{n} \overset{L'h}{=} \lim_{n \to \infty} \frac{1}{n} = 0 < 1. \]
+        Como $r = 0 < 1$, por el criterio de la raíz, la serie converge.
+        
+        \item Calculamos el límite del radical n-ésimo:
+        \[ r = \lim_{n \to \infty} \sqrt[n]{\left|\frac{2^n}{n^n}\right|} = \lim_{n \to \infty} \frac{2}{n} = 0 < 1. \]
+        Como $r = 0 < 1$, por el criterio de la raíz, la serie converge.
+    \end{enumerate}
+\end{soln}
+
+\begin{problem}{Ejercicios del criterio de la raíz}{ej:criterio_raiz_4}
+    Utilizando el criterio de la raíz, analice la convergencia de las siguientes series:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle \sum_{n=1}^{\infty} \l \frac{2n}{n+1} \r^n$
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{n \, 3^n}{n!}$
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n \, n^n}{e^n}$
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{n^3}{3^n}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\subsection{Convergencia absoluta y condicional}
+
+\begin{definition}{Convergencia absoluta y condicional}{convergencia_absoluta_condicional}
+    Sea $\displaystyle \sum_{n=1}^{\infty}a_n$ una serie de números reales. Se dice que:
+    \begin{itemize}
+        \item Si la serie de los valores absolutos $\displaystyle \sum_{n=1}^{\infty}|a_n| $ converge, entonces la serie original es \textbf{absolutamente convergente}.
+        \item Si la serie $\displaystyle \sum_{n=1}^{\infty}|a_n|$ diverge, pero la serie $\displaystyle \sum_{n=1}^{\infty}a_n$ converge, entonces es \textbf{condicionalmente convergente}.
+    \end{itemize}
+\end{definition}
+
+\begin{example}{}{ej:convergencia_absoluta_condicional_1}
+    Verifique qué tipo de convergencia posee cada una de las siguientes series:
+    \begin{multicols}{2}
+    \begin{enumerate}
+        \item $\displaystyle \sum_{n=1}^{\infty}{\frac{(-1)^n}{n^2}}$,
+        \item $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n}{n}$.
+    \end{enumerate}
+    \end{multicols}
+\end{example}
+
+\begin{soln}
+    $\left. \right.$
+    \begin{enumerate}
+        \item Aplicando módulo: $\displaystyle \sum_{n=1}^{\infty}\left|\frac{(-1)^n}{n^2}\right| = \displaystyle \sum_{n=1}^{\infty} \frac{1}{n^2}$, que es una serie-p con $p=2 > 1$ (converge). Por ende, la serie es absolutamente convergente.
+        
+        \item Aplicando módulo: $\displaystyle \sum_{n=1}^{\infty}\left|\frac{(-1)^n}{n}\right| = \displaystyle \sum_{n=1}^{\infty} \frac{1}{n}$, que es la serie armónica ($p=1$), la cual diverge. Sin embargo, por el criterio de Leibniz se sabe que la serie alternante original sí converge. Por lo tanto, es condicionalmente convergente.
+    \end{enumerate}
+\end{soln}
+
+\begin{problem}{}{}
+    Analice si cada serie siguiente es absolutamente convergente, condicionalmente convergente o divergente:
+    \begin{multicols}{2}
+        \begin{enumerate}
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{(-1)^n n^2}{n^2+1}$
+            \item $\displaystyle \sum_{n=1}^{\infty} \frac{2(-1)^n}{e^n - e^{-n}}$
+        \end{enumerate}
+    \end{multicols}
+\end{problem}
+
+\newpage
+\subsection{Tabla resumen de criterios de convergencia para series}
+
+\begin{table}[H]
+\centering
+\resizebox{\textwidth}{!}{%
+\renewcommand{\arraystretch}{1.5}
+\begin{tabular}{|l|c|l|l|}
+\hline 
+\textbf{Nombre} & \textbf{Serie} & \textbf{Criterio} & \textbf{Observación} \\ \hline 
+Término n-ésimo & $\displaystyle\sum_{n=1}^{\infty}a_n$ & $\displaystyle\lim_{n \rightarrow \infty}a_n \neq 0 \, \Longrightarrow \,$ Div. & No sirve para convergencia \\ \hline
+Serie geométrica & $\displaystyle\sum_{n=0}^{\infty}ar^{n}$ & $\begin{cases} |r| < 1 \Longrightarrow \text{Conv. a } S=\frac{a}{1-r} \\ |r| \geq 1 \Longrightarrow \text{Div.} \end{cases}$ & Útil para comparación \\ \hline
+Serie p & $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^p}$ & $\begin{cases} p>1 \Longrightarrow \text{Conv.} \\ p \leq 1 \Longrightarrow \text{Div.} \end{cases}$ & Útil para comparación \\ \hline
+Integral & $\begin{cases} \displaystyle\sum_{n=1}^{\infty}a_n \\ a_n =f(n) \end{cases}$ & $\begin{cases} \displaystyle\int_{1}^{\infty}f(x) \, dx \text{ Conv. } \Longrightarrow \text{ Conv.} \\ \displaystyle\int_{1}^{\infty}f(x) \, dx \text{ Div. } \Longrightarrow \text{ Div.} \end{cases}$ & $\begin{cases} f \text{ continua, positiva,} \\ \text{decreciente y de fácil int.} \end{cases}$ \\ \hline
+Comp. directa & $\begin{cases} \displaystyle\sum_{n=1}^{\infty}a_n, \, \displaystyle\sum_{n=1}^{\infty}b_n \\ 0 \leq a_n \leq b_n \end{cases}$ & $\begin{cases} \displaystyle\sum_{n=1}^{\infty}b_n \text{ Conv. } \Longrightarrow \displaystyle\sum_{n=1}^{\infty}a_n \text{ Conv.} \\ \displaystyle\sum_{n=1}^{\infty}a_n \text{ Div. } \Longrightarrow \displaystyle\sum_{n=1}^{\infty}b_n \text{ Div.} \end{cases}$ & $\begin{cases} \text{Usar series geom. o p} \\ \text{para comparar} \end{cases}$ \\ \hline
+Comp. en el límite & $\displaystyle\sum_{n=1}^{\infty}a_n, \,\displaystyle\sum_{n=1}^{\infty}b_n >0$ & $\displaystyle\lim_{n \rightarrow \infty}\frac{a_n}{b_n}=L \begin{cases} L \neq 0, \text{ ambas Conv. o Div.} \\ L = 0 \text{ y } \displaystyle\sum b_n \text{ Conv. } \Longrightarrow \displaystyle\sum a_n \text{ Conv.} \\ L = \infty \text{ y } \displaystyle\sum b_n \text{ Div. } \Longrightarrow \displaystyle\sum a_n \text{ Div.}\end{cases}$ & $\begin{cases} \text{Usar series geom. o p} \\ \text{para comparar} \end{cases}$ \\ \hline
+Serie Alt. (Leibniz) & $\displaystyle\sum_{n=1}^{\infty}(-1)^n a_n$ & $\begin{cases} a_n \geq a_{n+1}, \, \forall n \\ \displaystyle\lim_{n \rightarrow \infty}a_n = 0 \end{cases} \Longrightarrow \text{ Conv.}$ & $\begin{cases} \text{Si } \displaystyle\lim_{n \rightarrow \infty}a_n \neq 0 \\ \text{aplicar término n-ésimo}\end{cases}$ \\ \hline
+Razón & $\displaystyle\sum_{n=1}^{\infty}a_n$ & $\displaystyle\lim_{n \rightarrow \infty}\left|\frac{a_{n+1}}{a_n}\right|= L \begin{cases} L < 1 , \text{ Conv.} \\ L > 1, \text{ Div.} \end{cases}$ & $\begin{cases} \text{No decide si } L = 1. \\ \text{Útil si } a_n \text{ tiene} \\ \text{factoriales o potencias} \end{cases}$ \\ \hline
+Raíz & $\displaystyle\sum_{n=1}^{\infty}a_n$ & $\displaystyle\lim_{n \rightarrow \infty}\sqrt[n]{|a_n|}= L \begin{cases} L < 1 , \text{ Conv.} \\ L > 1, \text{ Div.} \end{cases}$ & $\begin{cases} \text{No decide si } L = 1. \\ \text{Útil si } a_n \text{ tiene potencias} \end{cases}$ \\ \hline
+Serie Abs. Conv. & $\displaystyle\sum_{n=1}^{\infty}a_n$ & $\displaystyle\sum_{n=1}^{\infty}|a_n| \text{ Conv. } \Longrightarrow \displaystyle\sum_{n=1}^{\infty}a_n \text{ Abs. Conv.}$ & $\begin{cases} \text{Series de térm.} \\ \text{positivos y negativos} \end{cases}$ \\ \hline
+Serie Cond. Conv. & $\displaystyle\sum_{n=1}^{\infty}a_n$ & $\displaystyle\sum_{n=1}^{\infty}a_n \text{ Conv. y } \displaystyle\sum_{n=1}^{\infty}|a_n| \text{ Div. } \Longrightarrow \displaystyle\sum_{n=1}^{\infty}a_n \text{ Cond. Conv.}$ & $\begin{cases} \text{Series de térm.} \\ \text{positivos y negativos} \end{cases}$ \\ \hline
+\end{tabular}%
+}
+\end{table}
+
+\newpage
+\subsection{Ejercicios propuestos}
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand{\labelenumi}{\textbf{\theenumi.-}}
+\begin{enumerate}
+\item Usar, si es posible, el criterio de divergencia para determinar si las siguientes series divergen.
+\begin{multicols}{2}
+\begin{enumerate}
+\item $ \displaystyle{ \sum_{n=2}^{\infty}{ \l -1 \r^n \frac{1}{n^2} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \sin{ \l \frac{\pi}{2} - \frac{1}{n} \r} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l 1 + \frac{1}{n} \r \ln{\l 1 + \frac{1}{n} \r }} } $
+\item $ \displaystyle{ \sum_{n=0}^{\infty}{ \frac{n^2}{n + 1} } } $
+\end{enumerate}
+\end{multicols}
+
+\item Estudiar la naturaleza de las siguientes series. Encontrar la suma, cuando sea posible.
+\begin{multicols}{3}
+\begin{enumerate}
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^n \frac{3^n}{2^{n+2}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{3^{n+3}}{5^{n-1}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{2^n + 5^n}{2^n 5^n}} } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{2^{n-1}} } } $
+\item $ \displaystyle{ \sum_{n=0}^{\infty}{ \frac{2^n \sqrt{3} - 3^n \sqrt{2}}{6^n} } } $
+\item $ \displaystyle{26 \sum_{n=2}^{\infty}{ 3^{2-3n } } + \frac{26}{3} } $
+\end{enumerate}
+\end{multicols}
+
+\item Sea $\displaystyle{a_n = \sqrt{n+1} - \sqrt{n} }$, se pide:
+\begin{enumerate}
+\item Calcular el $\displaystyle{ \lim_{n \rightarrow \infty}{a_n} }$.
+\item Determinar si $\displaystyle{\sum_{n=1}^{\infty}{a_n}}$ es convergente.
+\end{enumerate}
+
+\item Usar, cuando sea posible, los criterios de comparación directa, comparación en el límite o de la integral para determinar si las siguientes series convergen o divergen.
+\begin{multicols}{3}
+\begin{enumerate}
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{3^n - \sin{\l n \r}} } } $
+\item $ \displaystyle{ \sum_{n=2}^{\infty}{ \frac{1}{\sqrt[n]{\ln{ \l n \r }}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{\ln{ \l n+1 \r } - \ln{ \l n \r }}{\arctan{\l 2n \r}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{\sqrt[3]{8n^2 - 5n}} } } $
+\item $ \displaystyle{ \sum_{n=2}^{\infty}{ \frac{\l \ln{ \l n \r } \r^2}{n^3} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{e^{\frac{1}{n}}}{n^2} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{\l n+1 \r \sqrt{\ln{\l n+1 \r}}}} } $ 
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{n \sqrt{n}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{n+1}{n \sqrt{n}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{n 2^n} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{1}{ \sqrt{n \l n+1 \r}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{2}{2^n + 3}} } $ 
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{\ln{ \l n+1 \r }}{\l n+1 \r ^3} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{n}{\sqrt{4n^3 +1}} } } $
+\end{enumerate}
+\end{multicols}
+
+\item ¿Para qué valores de $p$ la serie $\displaystyle{\sum_{n=2}^{\infty}{ \frac{1}{n \l \ln{\l n \r} \r^p} }}$ converge?
+\item ¿Para qué valores de $p$ y $q$ la serie $\displaystyle{\sum_{n=2}^{\infty}{ \frac{\l \ln{\l n \r} \r^p}{n^q} }}$ converge?
+
+\item Usar, cuando sea posible, los criterios de la razón y de la raíz para determinar si las siguientes series convergen o divergen.
+\begin{multicols}{3}
+\begin{enumerate}
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{n^n}{\l p+1 \r \l p+2 \r \ldots \l p+n \r } } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{\l n! \r^2 2^n}{\l 2n+2 \r! } } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{2^n \frac{\sqrt[n]{n}}{n! } } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l 2n^2 + 3n +5 \r \l \frac{2}{3 } \r^n } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ n^2 e^{-n} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{2^n n^n}{ \binom{n}{2}^n } } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{\l -1 \r^{n-1} n!}{6^n } } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{n!}{10^n} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{10^n}{n!} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ n \l \frac{3}{4 } \r^n } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{\l -1 \r^n}{n^p } } }, \,\, 0 < p <1 $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{2^n}{n^3 } } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l \frac{3}{2} \r^n \frac{n!}{n} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \frac{n}{\l n+1 \r 2^n} } } $
+\end{enumerate}
+\end{multicols}
+
+\item Determinar si las siguientes series divergen, convergen condicionalmente o convergen absolutamente.
+\begin{multicols}{3}
+\begin{enumerate}
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^n \frac{n+1}{5^n} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^{n+1} \frac{2}{e^n - e^{-n}} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^n \frac{n^2}{n^2 +1} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^n \frac{\cos{\l n \pi \r}}{n+1} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^{n+1} \frac{\ln{\l n+1 \r}}{n+1} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^{n-1} \frac{\ln{\l n \r}}{n^2} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^{n-1} \frac{\l \frac{4}{3} \r^n}{n^2} } } $
+\item $ \displaystyle{ \sum_{n=1}^{\infty}{ \l -1 \r^n \frac{1}{n^2 \ln{\l n \r}} } } $
+\end{enumerate}
+\end{multicols}
+
+\end{enumerate}

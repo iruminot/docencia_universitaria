@@ -1,0 +1,195 @@
+\documentclass[11pt,letterpaper,hidelinks]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
+\usepackage{graphicx,color}
+\usepackage{epsfig} 
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{tikz}
+\usepackage{listings}
+\usepackage{multirow}
+\usepackage{caption}
+\usepackage[framemethod=TikZ]{mdframed}
+\usepackage{enumitem}
+\usepackage{subcaption}
+\input{general_commands}
+\usepackage[top=3cm,bottom=2cm,left=2cm,right=2cm]{geometry}
+%\usepackage[letterpaper, total={6in, 8in}]{geometry}
+%\pagestyle{headings}
+\boldmath
+\setlength{\parindent}{0pt}
+\tikzset{every picture/.style={execute at begin picture={\shorthandoff{<}\shorthandoff{>}}}}
+\usetikzlibrary{babel}
+
+\hypersetup{colorlinks, linkcolor=blue, citecolor=blue,urlcolor=blue,plainpages=false}
+
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{problem}{Problema}
+\newtheorem{defi}{Defición}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{assumption}[theorem]{Assumption}
+\newtheorem{remark}[theorem]{Remark}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{algorithm}[theorem]{Algorithm}
+\newtheorem{experiment}[theorem]{Experiment}
+\usepackage{todonotes}
+\usepackage{xcolor}
+\usepackage{cancel}
+\usepackage{empheq}
+\newcommand{\pvr}[1]{{\color{blue}{#1}}}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\usepackage{authblk}
+\newcommand{\bpsi}{\boldsymbol\psi}
+\newcommand{\mover}[1]{{\color{red}{#1}}}
+\newcommand{\keko}[1]{{\color{magenta}{#1}}}
+
+\newcommand{\liliana}[2]{{\color{violet}{#1}}}
+
+\newcommand{\Cnueve}{D_1}
+\newcommand{\Cdiez}{D_2}
+\newcommand{\compD}{\Omega_h}
+\newcommand{\vertiii}[1]{{\left\vert\kern-0.25ex\left\vert\kern-0.25ex\left\vert #1 
+    \right\vert\kern-0.25ex\right\vert\kern-0.25ex\right\vert}}
+
+\newcommand\revise[1]{\textcolor{blue}{#1}}
+\newcommand\comment[1]{\textcolor{red}{#1}}
+\newcommand\commentM[1]{\textcolor{magenta}{#1}}
+
+
+\newcommand\Source{S(f,g)}
+\newcommand\Sourceone{S(f,g,1)}
+
+
+\definecolor{mygreen}{rgb}{0.0,0.5,0.0}
+%%%
+
+\pagestyle{myheadings}
+\markright{Facultad de Ingeniería}
+
+\usepackage{cleveref}
+\allowdisplaybreaks
+
+\author[1]{Ignacio S. Ruminot}
+%\author[2]{Sergio Rojas}
+%\author[2]{Patrick Vega}
+%\affil[1]{Grupo de Investigaci\'on en Computaci\'on Cient\'ifica, Universidad Nacional de Colombia\\
+% Medell\'in, Colombia \hspace{15cm}\texttt{lilianacamargomazuera@gmail.com}}
+\affil[1]{Departamento de Matemática y Física Aplicada, Universidad Católica de la Santísima Concepción. 
+	\texttt{ignacio.ruminot@ucsc.cl}}
+ 
+\renewcommand\Authands{ and }
+%\date{April 1, 2023}
+\begin{document}
+
+% --- INICIO DEL ENCABEZADO ---
+\noindent
+\begin{minipage}[t]{0.6\textwidth}
+    \vspace{0pt} % Alinea el minipage en la parte superior
+    \textbf{IN1515C: Cálculo I}\\
+    \textbf{Profesor:} Ignacio Ruminot Aburto
+\end{minipage}%
+\begin{minipage}[t]{0.4\textwidth}
+    \vspace{0pt}
+    \raggedleft
+    % Reemplaza 'escudo_uchile.png' y 'logo_fcfm.png' con los nombres de tus archivos de imagen.
+    % Puedes ajustar el 'height' para escalar los logos a tu gusto.
+    \includegraphics[height=0.9cm]{DMFA.png} 
+\end{minipage}
+
+\vspace{1cm} % Espacio entre el encabezado y el título
+
+\begin{center}
+    {\Large \textbf{Evaluación 2 Formativa}}\\[0.3cm]
+\end{center}
+	
+%
+%
+%
+\hrule
+
+\begin{enumerate}[label={\bf P.\arabic*}]
+    \item Considere la función racional definida por:
+    \[ f(x) = \frac{x^2 - 9}{x^2 - 2x - 3}. \]
+    \begin{enumerate}
+        \item Identifique los valores de $x$ donde la función es discontinua. Clasifique cada discontinuidad como \textbf{evitable} o \textbf{no evitable}.
+        \item Determine todas las asíntotas de la gráfica de $f$.
+        \item Calcule la primera derivada $f'(x)$, determine sus puntos críticos y establezca los intervalos de crecimiento y decrecimiento de la función.
+    \end{enumerate}
+
+
+    \item Dada la siguiente función definida por tramos:
+    \[ f(x) = \begin{cases} 2x^2 - 1 & ,\text{si } x \leq 1 \\ 2x - 1 & ,\text{si } x > 1 \end{cases} \]
+    \begin{enumerate}
+        \item Demuestre que la función es continua en $x = 1$.
+        \item Estudie la derivabilidad de la función $x = 1$
+        \item Determine la función derivada $f^{\prime}$ en todo su dominio.
+        \item Determine, de ser posible, si existe una única recta tangente en $x = 1$.
+    \end{enumerate}
+
+
+    \item En una planta industrial se debe transportar material desde un punto de   almacenamiento $A$ hasta un punto de procesamiento $C$. El punto $A$ se encuentra en un terreno irregular y el punto $C$ está sobre un camino pavimentado. La distancia perpendicular de $A$ al camino es de $30$~m (punto $B$), y la distancia desde $B$ hasta $C$ a lo largo del camino es de $200$~m. Un vehículo autónomo se desplaza a $2$~m/s en terreno irregular y a $3$~m/s sobre el pavimento. El objetivo es determinar la ubicación del punto de desvío $P$ en el camino que minimice el tiempo total de transporte.
+
+    \begin{center}
+    \begin{tikzpicture}[handle active characters in code, x=0.06cm, y=0.06cm, >=stealth]
+        % Coordenadas clave
+        \coordinate (A) at (0,30);
+        \coordinate (B) at (0,0);
+        \coordinate (C) at (200,0);
+        \coordinate (P) at (60,0);
+
+
+        % Dibujo del camino pavimentado (Eje X)
+        \draw[line width=1.5pt, black!70] (-20,0) -- (220,0);
+        \draw[thick, dashed, white] (-20,0) -- (220,0); 
+        \node[black!80, font=\small, anchor=north east] at (190,12) {$v_{pa} = 3$ m/s};
+
+        % Distancia perpendicular de A a B (30 m)
+        \draw[thick, dashed, gray] (A) -- (B) node[midway, left, color=black] {$30$ m};
+        
+        % Ángulo recto en B
+        \draw[thin, gray] (0,3) -- (3,3) -- (3,0);
+
+        % Trayectoria del vehículo
+        \draw[ultra thick, red] (A) -- (P) node[midway, above right, color=black, font=\small] {$v_{ir} = 2$ m/s};
+        \draw[ultra thick, blue] (P) -- (C) node[midway, below, color=black] {$200 - x$};
+
+        % Puntos y etiquetas de los vértices
+        \fill[black] (A) circle (2.5pt) node[above left, font=\bfseries] {A};
+        \fill[black] (B) circle (2.5pt) node[below left, font=\bfseries] {B};
+        \fill[black] (C) circle (2.5pt) node[below right, font=\bfseries] {C};
+        \fill[purple] (P) circle (2.5pt) node[below, font=\bfseries, yshift=-2pt] {P};
+
+        % Cotas de distancias en el camino
+        % Cota para x
+        \draw[<->, thin, brown] (0,-10) -- (60,-10) node[midway, fill=white, inner sep=2pt] {$x$};
+        \draw[gray, thin] (0,-4) -- (0,-13);
+        \draw[gray, thin] (60,-4) -- (60,-13);
+
+        % Cota total (200 m)
+        \draw[<->, thin, brown] (0,-25) -- (200,-25) node[midway, fill=white, inner sep=2pt] {$200$ m};
+        \draw[gray, thin] (200,-4) -- (200,-28);
+        \draw[gray, thin] (0,-13) -- (0,-28);
+    \end{tikzpicture}
+\end{center}
+
+    \begin{enumerate}
+        \item Si $x$ representa la distancia desde $B$ hasta el punto donde el vehículo ingresa al pavimento, modele la función del tiempo total de desplazamiento $T(x)$ y defina su dominio en el contexto del problema.
+        \item Determine el valor de $x$ que minimiza el tiempo total de desplazamiento.
+        \item Justifique que el valor hallado corresponde a un mínimo absoluto. 
+    \end{enumerate}
+
+    \item Resuelva los siguientes problemas:
+    \begin{enumerate}
+        \item Calcule el límite
+        \[ \lim_{x \to +\infty} (e^{2x} + x)^{5/x} \]
+        \item Dada la función $f(x) = e^{1/x}$, determine los intervalos donde la gráfica es \textbf{cóncava hacia arriba} (convexa) y \textbf{cóncava hacia abajo} (cóncava).
+    \end{enumerate}
+\end{enumerate}
+	
+\vfill
+\hrule 
+\vspace{0.2cm}
+\noindent {\sc Cálculo I (IN1515C) \hfill Primer Semestre 2026}
+\end{document}

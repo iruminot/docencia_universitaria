@@ -1,0 +1,49 @@
+\documentclass[12pt]{scrartcl}
+\usepackage[spanish, es-tabla, es-nodecimaldot]{babel}
+\usepackage[sectionmark,nodate,cs,epi,bib,hints,fancycover]{bubu}
+\addbibresource{refs.bib}
+\usepackage{multicol}
+\usetikzlibrary{babel}
+% Agrega esta línea inmediatamente abajo en tu 0_general_commands.tex:
+\tikzset{every picture/.style={execute at begin picture={\shorthandoff{<}\shorthandoff{>}}}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\title{\textcolor{bubured}{Fundamentos Matemáticos II}}
+\author{\textcolor{bubured}{Ignacio Ruminot Aburto}}
+\date{\textcolor{bubured}{Última Actualización: \today}}
+
+\begin{document}
+
+\maketitle
+
+\title{Fundamentos Matemáticos II}
+\author{Ignacio Ruminot Aburto}
+\date{Última Actualización: \today}
+
+\epigraph{``\emph{El método de las fluxiones es la llave que abre los secretos más profundos de la naturaleza a través del flujo continuo y la acumulación del movimiento.}''}{\textbf{Sir Isaac Newton}}
+
+\newpage
+\tableofcontents
+\newpage
+
+\include{limites.tex}
+\include{calculo_diferencial.tex}
+\include{calculo_integral.tex}
+\include{algebra_lineal.tex}
+
+
+
+% \section{Hints}
+
+% \printhint
+
+% \newpage
+
+% \section{Bibliografia}
+
+% Random text for citing some document in my \LaTeX\ file \cite{knuth1997}.
+
+% \printbibliography
+
+\end{document}

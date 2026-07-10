@@ -1,0 +1,21 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Sucesiones y Series Numéricas}{3}{section.2}%
+\contentsline {subsection}{\numberline {1.1}Concepto de serie y convergencia}{3}{subsection.3}%
+\contentsline {subsection}{\numberline {1.2}Series notables y descomposiciones}{6}{subsection.17}%
+\contentsline {subsection}{\numberline {1.3}Criterios de convergencia para series de términos no negativos}{9}{subsection.36}%
+\contentsline {subsubsection}{\numberline {1.3.1}Criterio de la integral}{10}{subsubsection.37}%
+\contentsline {subsubsection}{\numberline {1.3.2}Criterio de comparación directa}{11}{subsubsection.49}%
+\contentsline {subsubsection}{\numberline {1.3.3}Criterio de comparación por paso al límite}{13}{subsubsection.61}%
+\contentsline {subsection}{\numberline {1.4}Criterios de convergencia para series de términos de signo variable}{14}{subsection.73}%
+\contentsline {subsubsection}{\numberline {1.4.1}Criterio de Leibniz}{14}{subsubsection.74}%
+\contentsline {subsubsection}{\numberline {1.4.2}Criterio de la razón y de la raíz}{15}{subsubsection.86}%
+\contentsline {subsection}{\numberline {1.5}Convergencia absoluta y condicional}{18}{subsection.110}%
+\contentsline {subsection}{\numberline {1.6}Tabla resumen de criterios de convergencia para series}{19}{subsection.120}%
+\contentsline {subsection}{\numberline {1.7}Ejercicios propuestos}{20}{subsection.122}%
+\contentsline {section}{\numberline {2}Series de Potencias}{22}{section.179}%
+\contentsline {subsection}{\numberline {2.1}Definición e intervalos de convergencia}{22}{subsection.180}%
+\contentsline {subsection}{\numberline {2.2}Representación de funciones a través de series de potencias}{25}{subsection.193}%
+\contentsline {subsubsection}{\numberline {2.2.1}Función exponencial $e^x$ como serie de potencias}{27}{subsubsection.206}%
+\contentsline {subsection}{\numberline {2.3}Series de Taylor}{30}{subsection.214}%
+\contentsline {subsubsection}{\numberline {2.3.1}Construcción de la serie de Taylor}{30}{subsubsection.216}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 

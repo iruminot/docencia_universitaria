@@ -1,0 +1,36 @@
+\babel@toc {spanish}{}\relax 
+\contentsline {section}{\numberline {1}Límites y Continuidad de funciones}{3}{section.2}%
+\contentsline {subsection}{\numberline {1.1}Límites laterales}{4}{subsection.4}%
+\contentsline {subsection}{\numberline {1.2}Límites infinitos y al infinito}{4}{subsection.5}%
+\contentsline {subsection}{\numberline {1.3}Asíntotas}{4}{subsection.6}%
+\contentsline {subsection}{\numberline {1.4}Continuidad de funciones}{4}{subsection.7}%
+\contentsline {section}{\numberline {2}Cálculo Diferencial}{5}{section.8}%
+\contentsline {subsection}{\numberline {2.1}El problema de la recta tangente}{5}{subsection.9}%
+\contentsline {subsection}{\numberline {2.2}Derivadas de funciones y su cálculo}{5}{subsection.10}%
+\contentsline {subsection}{\numberline {2.3}Derivadas de orden superior}{5}{subsection.11}%
+\contentsline {subsection}{\numberline {2.4}Aplicaciones de la derivada}{5}{subsection.12}%
+\contentsline {subsubsection}{\numberline {2.4.1}Optimización}{5}{subsubsection.13}%
+\contentsline {section}{\numberline {3}Cálculo Integral}{6}{section.14}%
+\contentsline {subsection}{\numberline {3.1}Integrales indefinidas}{6}{subsection.15}%
+\contentsline {subsection}{\numberline {3.2}Métodos de integración}{6}{subsection.16}%
+\contentsline {subsection}{\numberline {3.3}Sumas de Riemann}{6}{subsection.17}%
+\contentsline {subsection}{\numberline {3.4}Integrales definidas}{6}{subsection.18}%
+\contentsline {subsection}{\numberline {3.5}Teorema fundamental del cálculo}{6}{subsection.19}%
+\contentsline {subsection}{\numberline {3.6}Aplicaciones de la integral}{6}{subsection.20}%
+\contentsline {subsubsection}{\numberline {3.6.1}Área de regiones en el plano}{6}{subsubsection.21}%
+\contentsline {subsubsection}{\numberline {3.6.2}Volumen de sólidos de revolución}{6}{subsubsection.22}%
+\contentsline {subsubsection}{\numberline {3.6.3}Área superficial de un sólido de revolución}{6}{subsubsection.23}%
+\contentsline {section}{\numberline {4}Álgebra Lineal}{7}{section.24}%
+\contentsline {subsection}{\numberline {4.1}Vectores en $\mathbb {R}^2$ y $\mathbb {R}^3$}{7}{subsection.25}%
+\contentsline {subsubsection}{\numberline {4.1.1}Operatoria con vectores}{7}{subsubsection.26}%
+\contentsline {subsubsection}{\numberline {4.1.2}Producto punto, norma y ángulo entre vectores}{7}{subsubsection.27}%
+\contentsline {subsubsection}{\numberline {4.1.3}Ortogonalidad, proyección ortogonal, producto cruz}{7}{subsubsection.28}%
+\contentsline {subsection}{\numberline {4.2}Matrices}{7}{subsection.29}%
+\contentsline {subsubsection}{\numberline {4.2.1}Operatoria con matrices}{7}{subsubsection.30}%
+\contentsline {subsubsection}{\numberline {4.2.2}Multiplicación de matrices}{7}{subsubsection.31}%
+\contentsline {subsubsection}{\numberline {4.2.3}Matriz traspuesta y traza}{7}{subsubsection.32}%
+\contentsline {subsubsection}{\numberline {4.2.4}Operaciones elementales por filas}{7}{subsubsection.33}%
+\contentsline {subsubsection}{\numberline {4.2.5}Determinante y rango de una matriz}{7}{subsubsection.34}%
+\contentsline {subsubsection}{\numberline {4.2.6}Matrices no singulares}{7}{subsubsection.35}%
+\contentsline {subsection}{\numberline {4.3}Sistemas de ecuaciones lineales}{7}{subsection.36}%
+\providecommand \tocbasic@end@toc@file {}\tocbasic@end@toc@file 
