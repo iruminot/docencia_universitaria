@@ -1,0 +1,49 @@
+# =========================================
+# 1. ARCHIVOS TEMPORALES DE LATEX (VimTeX / latexmk)
+# =========================================
+*.aux
+*.bbl
+*.blg
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.lof
+*.lot
+*.nav
+*.snm
+*.vrb
+*.bcf
+*.run.xml
+
+# =========================================
+# 2. ARCHIVOS DE NEOVIM / SISTEMA
+# =========================================
+*.swp
+*.swo
+*~
+.DS_Store
+
+# =========================================
+# 3. OTROS LENGUAJES (C, Python, MATLAB)
+# =========================================
+# Python
+__pycache__/
+*.pyc
+
+# C / C++
+*.o
+*.out
+*.exe
+
+# MATLAB
+*.asv
+*.m~
+
+# =========================================
+# 4. ARCHIVOS PESADOS (Opcional)
+# =========================================
+# Descomenta la siguiente línea si NO quieres subir tus PDFs a GitHub
+# *.pdf
