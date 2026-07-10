@@ -17,6 +17,7 @@
 *.vrb
 *.bcf
 *.run.xml
+*.pre
 
 # =========================================
 # 2. ARCHIVOS DE NEOVIM / SISTEMA
@@ -43,7 +44,8 @@ __pycache__/
 *.m~
 
 # =========================================
-# 4. ARCHIVOS PESADOS (Opcional)
+# 4. ARCHIVOS PESADOS
 # =========================================
-# Descomenta la siguiente línea si NO quieres subir tus PDFs a GitHub
+# PDFs
 # *.pdf
+bubu.sty
