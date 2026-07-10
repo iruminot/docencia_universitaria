@@ -61,7 +61,8 @@ Al analizar tanto numéricamente como gráficamente, observamos que a medida que
 \[ \lim_{x \to 1}{f(x)} = \lim_{x \to 1}{\frac{x^3 -1}{x-1}}=  \lim_{x \to 1}{\frac{\l x-1 \r \l x^2+x+1 \r}{\l x-1 \r}} = \lim_{x \to 1}{\l x^2+x+1 \r}  = 3 = L. \]
 Esto significa que podemos hacer que $f(x)$ esté \textbf{tan cerca de $3$ como queramos}, siempre y cuando el valor de $x$ esté lo suficientemente cerca (aunque no exactamente) de $1$.
 
-\textbf{¿Qué significa exactamente que $f(x)$ esté cerca de $L$?}. En matemática, \textbf{medir}\footnote{Medir es asignarle un valor numérico a un subconjunto de un espacio para cuantificar su magnitud.} la cercanía de dos números se hace a través de la \textbf{distancia}\footnote{Distancia o métrica es asignarle un valor numérico no negativo a cada par de elementos de un espacio para cuantificar su separación.} entre ellos, que se define como el \textbf{valor absoluto de su diferencia}.
+\textbf{¿Qué significa exactamente que $f(x)$ esté cerca de $L$?}. En matemática, \textbf{medir}\footnote{Medir es asignarle un valor numérico a un subconjunto de un espacio para cuantificar su magnitud.} la cercanía de dos números $x,y \in \R$ se hace a través de la \textbf{distancia}\footnote{Distancia o métrica es asignarle un valor numérico no negativo a cada par de elementos de un espacio para cuantificar su separación.} $d$ entre ellos, que en $\R$ se define como el \textbf{valor absoluto de su diferencia}:
+\[ d \l \cdot , \cdot \r: \R \times \R \to \R^{+}_0, \quad d \l x,y \r := \abs{x-y} = \begin{cases} x-y & \text{si } x \geq y \\ - \l x-y \r & \text{si } x<y \end{cases}. \]
 
 \begin{center}
 \begin{minipage}{0.45\textwidth}
@@ -166,13 +167,136 @@ Esto significa que podemos hacer que $f(x)$ esté \textbf{tan cerca de $3$ como 
 
 
 
-\begin{definition}{Límites}{def:limite}
+\begin{definition}{Límites $\varepsilon - \delta$}{def:limite}
     Se dice que el límite de una función $f(x)$ cuando $x$ tiende a un valor $a$ es igual a un número $L$, y se denota como
     \[
         \lim_{x \to a} f(x) = L,
     \]
-    si para todo $\epsilon > 0$ existe un $\delta > 0$ tal que si $0 < |x - a| < \delta$, entonces $|f(x) - L| < \epsilon$.
+    si para todo $\varepsilon > 0$ existe un $\delta > 0$ tal que si $0 < |x - a| < \delta$, entonces $|f(x) - L| < \varepsilon$.
 \end{definition}
+
+Visualmente, la definición del límite busca determinar esta banda vertical de ancho $2 \delta$ tal que toda la imagen de $f(x)$, dentro de esta banda, quede contenida en la banda horizontal de ancho $2 \varepsilon$.
+
+\begin{center}
+\begin{tikzpicture}
+    \begin{axis}[
+        axis lines = center,
+        xlabel = {\color{blue}$x$},
+        ylabel = {\color{blue}$f(x)$},
+        xmin = -1.5, xmax = 7.5,
+        ymin = -1.5, ymax = 6.5,
+        xtick = \empty,
+        ytick = \empty,
+        width = 0.8\textwidth,
+        height = 0.4\textwidth,
+        axis on top,
+    ]
+
+    % 1. Bandas: Intersección de franja horizontal y vertical
+    \fill[blue!10] (axis cs:-0.5, 2) rectangle (axis cs:7.5, 4); % Franja horizontal
+    \fill[blue!15, opacity=0.8] (axis cs:3, -0.5) rectangle (axis cs:5, 6.5); % Franja vertical
+    
+    % Bordes de las bandas
+    \draw[blue!30, dashed, thick] (axis cs:-0.5, 4) -- (axis cs:7.5, 4);
+    \draw[blue!30, dashed, thick] (axis cs:-0.5, 2) -- (axis cs:7.5, 2);
+    \draw[blue!30, dashed, thick] (axis cs:3, -0.5) -- (axis cs:3, 6.5);
+    \draw[blue!30, dashed, thick] (axis cs:5, -0.5) -- (axis cs:5, 6.5);
+
+    % 2. Gráfica de la función
+    \addplot [domain=0:7, samples=100, blue!80!black, thick] 
+        {3 + 0.5*sin(deg((x-4)*1.5)) + 0.1*(x-4)^3};
+
+    % 3. Líneas discontinuas de proyección (relación L y f(a))
+    \draw[cyan!70!black, dashed, thick] (axis cs:4,0) -- (axis cs:4, 5.5);
+    \draw[cyan!70, dashed, thick] (axis cs:0,3) -- (axis cs:4,3);
+
+    % 4. Puntos
+    % Punto a, L y f(a)
+    \addplot[mark=*, mark options={fill=red, draw=black}, only marks] coordinates {(4,0)};
+    \node[blue, below] at (axis cs: 4, -0.3) {$a$};
+    
+    \addplot[mark=*, mark options={fill=red, draw=black}, only marks] coordinates {(0,3)};
+    \node[blue, left] at (axis cs: -0.1, 3) {$L$};
+    
+    \addplot[mark=*, mark options={fill=red, draw=black}, only marks] coordinates {(4,5.5)};
+    \node[right, font=\small] at (axis cs: 4, 5.5) {$f(a)$};
+    
+    % Punto hueco (límite L)
+    \addplot[mark=*, mark options={fill=white, draw=blue!80!black, thick}, only marks] coordinates {(4,3)};
+    
+    % 5. Corchetes (indicadores delta y epsilon)
+    % Delta en X
+    \draw[thick] (axis cs:5.2, -0.2) -- (axis cs:5, -0.2) -- (axis cs:5, 0.2) -- (axis cs:5.2, 0.2);
+    \node[blue, below, font=\small] at (axis cs: 5, -0.2) {$a+\delta$};
+    \draw[thick] (axis cs:2.8, -0.2) -- (axis cs:3, -0.2) -- (axis cs:3, 0.2) -- (axis cs:2.8, 0.2);
+    \node[blue, below, font=\small] at (axis cs: 3, -0.2) {$a-\delta$};
+
+    % Epsilon en Y
+    \draw[thick] (axis cs:-0.2, 4.2) -- (axis cs:-0.2, 4) -- (axis cs:0.2, 4) -- (axis cs:0.2, 4.2);
+    \node[blue, left, font=\small] at (axis cs: -0.2, 4) {$L+\varepsilon$};
+    \draw[thick] (axis cs:-0.2, 1.8) -- (axis cs:-0.2, 2) -- (axis cs:0.2, 2) -- (axis cs:0.2, 1.8);
+    \node[blue, left, font=\small] at (axis cs: -0.2, 2) {$L-\varepsilon$};
+    
+    \end{axis}
+\end{tikzpicture}
+\end{center}
+
+Notar además que no se exige necesariamente que $f(a) = L$, pero este detalle propondrá un concepto muy importante en nuestro análisis de límites.
+
+\begin{remark}{}{obs:link_limite}
+  En el siguiente \href{https://ggbm.at/p8fsxasx}{link} puedes visualizar la interpretación geométrica del concepto de límite de manera interactiva.
+\end{remark}
+
+\begin{exercise}{}{ejemplo_1}
+  Considere la función $f:\R \to \R$, $f(x) = 2x+1$ y el límite:
+  \[\lim_{x \to 1}{f(x)} = 3. \]
+  \begin{enumerate}
+    \item Grafique $f(x)=2x+1$ junto con las bandas horizontales definidas por la desigualdad $\abs{f(x)-3}<0.1$.
+    \item Luego, determine visualmente un intervalo alrededor de $x=1$, de la forma $\l 1-\delta , 1+\delta \r$, tal que si $x$ está en ese intervalo (pero $x \neq 1$), la imagen $f(x)$ se mantenga dentro de las bandas horizontales.
+  \end{enumerate}
+  Utilice alguna herramienta gráfica como \href{https://www.geogebra.org/calculator}{GeoGebra} o \href{https://www.desmos.com/calculator?lang=es}{Desmos} para facilitar la visualización.
+\end{exercise}
+
+El siguiente teorema establece propiedades que nos permitirán evaluar (calcular) límites de forma más directa, sin tener que recurrir a la definición $\varepsilon-\delta$
+
+\begin{theorem}{Álgebra de Límites}{thm:algebra_limites}
+  Sean $n \in \N$, $k \in \R$ una constante y $f,g$ funciones tales que
+  \[ \lim_{x \to c}{f(x)} = L_1 \quad \wedge \quad \lim_{x \to c}{g(x)} = L_2 \]
+  Entonces, se cumple:
+  \begin{enumerate}
+    \item $\displaystyle{\lim_{x \to c}{k} = k}$,
+    \item $\displaystyle{\lim_{x \to c}{x} = c}$,
+    \item $\displaystyle{\lim_{x \to c}{\l f(x) + g(x) \r} = \lim_{x \to c}{f(x)} + \lim_{x \to c}{g(x)} = L_1 + L_2  }$,
+    \item $\displaystyle{\lim_{x \to c}{\l \alpha f(x) \r} = \alpha \lim_{x \to c}{f(x)} = \alpha L_1 }$,
+    \item $\displaystyle{\lim_{x \to c}{f(x) \cdot g(x)} = \lim_{x \to c}{f(x)} \cdot \lim_{x \to c}{g(x)} = L_1 \cdot L_2 }$,
+    \item $\displaystyle{\lim_{x \to c}{\dfrac{f(x)}{g(x)}} = \dfrac{\displaystyle \lim_{x \to c}{f(x)}}{\displaystyle \lim_{x \to c}{g(x)}} = \dfrac{L_1}{L_2} }$,
+    \item $\displaystyle{\lim_{x \to c}{\l f(x) \r^n} = \l \lim_{x \to c}{f(x)} \r^n = L_1 ^n}$,
+    \item $\displaystyle{\lim_{x \to c}{\sqrt[n]{f(x)}} = \sqrt[n]{\lim_{x \to c}{f(x)}} = \begin{cases} \sqrt[n]{L_1} & \text{, si } n \text{ es par y } L_1>0 \\ \sqrt[n]{L_1} & \text{, si } n \text{ es impar} \\ \text{no existe} & \text{en otro caso} \end{cases} }$,
+  \end{enumerate}
+\end{theorem}
+
+\begin{notation}{}{}
+  Es importante saber leer e interpretar correctamente un teorema. Recordemos que un teorema es una proposición o afirmación matemática cuyo valor de verdad puede ser demostrado de manera lógica. Su estructura es la siguiente:
+  \begin{center}
+    \textbf{Hipótesis + Conector lógico + Tesis}
+  \end{center}
+  \begin{itemize}
+    \ii \textbf{Hipótesis}: Son las condiciones que se deben cumplir. Al aplicar un teorema, uno debe verificar que se cumplen todas y cada una de estas condiciones.
+    \ii \textbf{Tesis}: Son las consecuencias que ocurren dado que se cumplen las condiciones. Es la afirmación, resultado o consecuencias que se concluyen a través de la demostración.
+    \ii \textbf{Conector lógico}: Es el puente lógico que le da sustento a la propisición. Estos conectores pueden ser: 
+    \begin{itemize}
+      \ii \textbf{Implicancia lógica} $(H \implies T)$: Su lectura es la siguiente:
+      \begin{center}
+        \textbf{Si} se cumplen [LAS HIPÓTESIS] \textbf{entonces}, se concluye la [TESIS]    
+      \end{center}
+      \ii \textbf{Equivalencia lógica} $(H \iff T)$: Su lectura es la siguiente:
+      \begin{center}
+        [LAS HIPÓTESIS] \textbf{si y solo si} [TESIS]
+      \end{center}
+      Debemos notar que una equivalencia lógica es equivalente a que se cumplan dos implicancias: $H \implies T$ y $T \implies H$, es decir, debemos poner atención a la dirección de la afirmación, ya que las hipótesis toman el rol de la tesis y viceversa.
+    \end{itemize}
+  \end{itemize}
+\end{notation}
 
 \subsection{Límites laterales}
 
