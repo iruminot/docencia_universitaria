@@ -322,7 +322,9 @@ El siguiente teorema establece propiedades que nos permitirán evaluar (calcular
   Aplicando el álgebra de límites, calcule:
   \begin{multicols}{2}
     \begin{enumerate}
-      \item $\displaystyle{ \lim_{x \to 5 } = 5 }$
+      \item $\displaystyle{ \lim_{x \to 1 }{5} = 5 }$
+      \item $\displaystyle{ \lim_{x \to 2 }{x} = (2) }$
+      \item $\displaystyle{ \lim_{x \to 2 }{x^2} = \l \lim_{x \to 2}{x} \r^2 = \l 2 \r^2 =4}$
     \end{enumerate}
   \end{multicols}
 \end{example}
@@ -350,5 +352,16 @@ El siguiente teorema establece propiedades que nos permitirán evaluar (calcular
   \end{itemize}
 \end{notation}
 
+\begin{remark}{}{indeterminaciones}
+  Existen ocasiones donde al evaluar los límites de una función da como resultado una expresión de la forma $\frac{0}{0}$. Esta expresión se conoce como una \textbf{forma indeterminada}, ya que no permite calcular el valor del límite directamente.
+
+  Por ejemplo:
+  \[ \lim_{x \to -1}{\frac{x^2-1}{x+1}} = \frac{ \l -1 \r^2 -1 }{ \l -1 \r + 1} = \frac{0}{0} \]
+
+  En estos casos es necesario utilizar propiedades de los números reales -como la factorización, la simplificación o la racionalización- que permitan resolver este tipo de indeterminaciones. En nuestro ejemplo:
+  \[ \lim_{x \to -1}{\frac{x^2-1}{x+1}} = \lim_{x \to -1}{ \frac{\l x-1\r \cancel{\l x+1 \r}}{\cancel{\l x+1 \r}} = \lim_{x \to -1}{x-1}  = \l -1 \r - 1 = -2\]
+\end{remark}
+
 \subsection{Límites laterales}
+
 
