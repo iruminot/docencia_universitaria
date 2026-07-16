@@ -57,12 +57,24 @@ Consideremos la función $f : \R \to \R$, $x \mapsto f(x) = \dfrac{x^3 -1}{x-1}$
 \end{minipage}
 \end{center}
 
-Al analizar tanto numéricamente como gráficamente, observamos que a medida que $x$ se aproxima a $1$, los valores de $f(x)$ se acercan a $3$. Esto nos lleva a la conclusión de que, aunque $f$ no está definida en $x=1$, podemos afirmar que cuando los valores de $x$ se acercan a $1$, los valores de $f(x)$ se acercan a $3$. En notación matemática, esto se expresa como:
+Al analizar tanto numéricamente como gráficamente, observamos que a medida que $x$ se aproxima a $1$, los valores de $f(x)$ se acercan a $3$. Esto nos lleva a la conclusión de que, aunque $f$ no está definida en $x=1$, podemos afirmar que cuando los valores de $x$ se acercan a $1$, los valores de $f(x)$ se acercan a $3$. En notación matemática, esto se expresa como un \textbf{límite} cuyo valor es $L$:
 \[ \lim_{x \to 1}{f(x)} = \lim_{x \to 1}{\frac{x^3 -1}{x-1}}=  \lim_{x \to 1}{\frac{\l x-1 \r \l x^2+x+1 \r}{\l x-1 \r}} = \lim_{x \to 1}{\l x^2+x+1 \r}  = 3 = L. \]
-Esto significa que podemos hacer que $f(x)$ esté \textbf{tan cerca de $3$ como queramos}, siempre y cuando el valor de $x$ esté lo suficientemente cerca (aunque no exactamente) de $1$.
 
-\textbf{¿Qué significa exactamente que $f(x)$ esté cerca de $L$?}. En matemática, \textbf{medir}\footnote{Medir es asignarle un valor numérico a un subconjunto de un espacio para cuantificar su magnitud.} la cercanía de dos números $x,y \in \R$ se hace a través de la \textbf{distancia}\footnote{Distancia o métrica es asignarle un valor numérico no negativo a cada par de elementos de un espacio para cuantificar su separación.} $d$ entre ellos, que en $\R$ se define como el \textbf{valor absoluto de su diferencia}:
+se lee: \emph{El límite de $f(x)$, cuando $x$ tiende a $a$, es igual a $L$}, o \emph{$f(x)$ tiende a $L$ cuando $x$ tiende a $a$}. También se escribe sin el símbolo de límite, como sigue:
+\[ f(x) \to L, \quad x \to a. \]
+Esto significa que podemos hacer que $f(x)$ esté \textbf{tan cerca de $L$ como queramos}, siempre y cuando el valor de $x$ esté lo suficientemente cerca (aunque no exactamente) de $a$.
+
+\textbf{¿Qué significa exactamente que $f(x)$ esté cerca de $L$?}. En matemática, \textbf{medir}\footnote{Medir es asignarle un valor numérico no negativo a un subconjunto de un espacio para cuantificar su magnitud.} la cercanía de dos números $x,y \in \R$ se hace a través de la \textbf{distancia}\footnote{Distancia o métrica es asignarle un valor numérico no negativo a cada par de elementos de un espacio para cuantificar su separación.} $d$ entre ellos, que en $\R$ se define como el \textbf{valor absoluto de su diferencia}:
 \[ d \l \cdot , \cdot \r: \R \times \R \to \R^{+}_0, \quad d \l x,y \r := \abs{x-y} = \begin{cases} x-y & \text{si } x \geq y \\ - \l x-y \r & \text{si } x<y \end{cases}. \]
+
+Ahora que sabemos como medir distancias, podemos definir lo que es una \textbf{vecindad o entorno}:
+
+\begin{definition}{Vecindad de un punto}{def:vecindad}
+  Una vecindad es un intervalo abierto que contiene a todos los puntos $x$ cuya distancia al punto $a$ es menor que un radio $r>0$. Matemáticamente se define como:
+  \[ ] a-r,a+r[ \, := \left\lbrace x \in \R : d \l x,a \r = \abs{x-a} < r \right\rbrace  \]
+\end{definition}
+
+Este concepto de vecindad es el elemento clave para poder dar una definición rigurosa de límite. Utilizando esta definición podemos establecer el conjunto de todas las imagénes $f(x)$ que están cerca de $L$ y de todas las preimagénes $x$ que están cerca de $a$.  
 
 \begin{center}
 \begin{minipage}{0.45\textwidth}
@@ -165,7 +177,9 @@ Esto significa que podemos hacer que $f(x)$ esté \textbf{tan cerca de $3$ como 
 \end{minipage}
 \end{center}
 
+Si nos fijamos bien en la idea de límite intervienen estas dos vecindades antes definidas.
 
+Dada una vecindad de $L$ (en el eje $Y$) definida por $] L-\varepsilon,L+\varepsilon [$, podemos encontrar una vecindad de $a$ (en el eje $X$) definida por $] a-\delta,a+\delta [$, le damos forma a la definición $\varepsilon - \delta$ (epsilon-delta) de límites de funciones.
 
 \begin{definition}{Límites $\varepsilon - \delta$}{def:limite}
     Se dice que el límite de una función $f(x)$ cuando $x$ tiende a un valor $a$ es igual a un número $L$, y se denota como
@@ -241,7 +255,7 @@ Visualmente, la definición del límite busca determinar esta banda vertical de 
 \end{tikzpicture}
 \end{center}
 
-Notar además que no se exige necesariamente que $f(a) = L$, pero este detalle propondrá un concepto muy importante en nuestro análisis de límites.
+Notar además que no se exige necesariamente que $f(a) = L$, pero este detalle propondrá un concepto muy importante en nuestro análisis de funciones.
 
 \begin{remark}{}{obs:link_limite}
   En el siguiente \href{https://ggbm.at/p8fsxasx}{link} puedes visualizar la interpretación geométrica del concepto de límite de manera interactiva.
@@ -254,8 +268,37 @@ Notar además que no se exige necesariamente que $f(a) = L$, pero este detalle p
     \item Grafique $f(x)=2x+1$ junto con las bandas horizontales definidas por la desigualdad $\abs{f(x)-3}<0.1$.
     \item Luego, determine visualmente un intervalo alrededor de $x=1$, de la forma $\l 1-\delta , 1+\delta \r$, tal que si $x$ está en ese intervalo (pero $x \neq 1$), la imagen $f(x)$ se mantenga dentro de las bandas horizontales.
   \end{enumerate}
-  Utilice alguna herramienta gráfica como \href{https://www.geogebra.org/calculator}{GeoGebra} o \href{https://www.desmos.com/calculator?lang=es}{Desmos} para facilitar la visualización.
+  Utilice alguna calculadora gráfica como \href{https://www.geogebra.org/calculator}{GeoGebra} o \href{https://www.desmos.com/calculator?lang=es}{Desmos} para facilitar la vizualicación.
 \end{exercise}
+
+\begin{question}{}{}
+  ¿Qué entendío usted de la definición de límite de una función? Describa su interpretación. ¿Existe alguna diferencia en la definición si $f(a) = L$ o $f(a) \neq L$?
+\end{question}
+
+Realizar demostraciones de límites de funciones por definición es algo realmente tedioso de realizar, más aún cuando las funciones son cada vez más complejas en su forma. Es por esto que los matemáticos se dedican a buscar herramientas de tal manera de simplificar los cálculos para todo el mundo. Aquí es donde nacen los teoremas, lemas y corolarios.
+
+\begin{notation}{}{}
+  Es importante saber leer e interpretar correctamente un teorema en matemática. Recordemos que un \textbf{teorema} es una proposición o afirmación matemática cuyo valor de verdad puede ser demostrado de manera lógica. Su estructura es la siguiente:
+  \begin{center}
+    \textbf{Hipótesis + Conector lógico + Tesis}
+  \end{center}
+  \begin{itemize}
+    \ii \textbf{Hipótesis}: Son las condiciones que se deben cumplir. Al aplicar un teorema, uno debe verificar que se cumplen todas y cada una de estas condiciones.
+    \ii \textbf{Tesis}: Son las consecuencias que ocurren dado que se cumplen las condiciones. Es la afirmación, resultado o consecuencias que se concluyen a través de la demostración.
+    \ii \textbf{Conector lógico}: Es el puente lógico que le da sustento a la propisición. Estos conectores pueden ser: 
+    \begin{itemize}
+      \ii \textbf{Implicancia lógica} $(H \implies T)$: Su lectura es la siguiente:
+      \begin{center}
+        \textbf{Si} se cumplen [LAS HIPÓTESIS] \textbf{entonces}, se concluye la [TESIS]    
+      \end{center}
+      \ii \textbf{Equivalencia lógica} $(H \iff T)$: Su lectura es la siguiente:
+      \begin{center}
+        [LAS HIPÓTESIS] \textbf{si y solo si} [TESIS]
+      \end{center}
+      Debemos notar que una equivalencia lógica es equivalente a que se cumplan dos implicancias: $H \implies T$ y $T \implies H$, es decir, debemos poner atención a la dirección de la afirmación, ya que las hipótesis toman el rol de la tesis y viceversa.
+    \end{itemize}
+  \end{itemize}
+\end{notation}
 
 El siguiente teorema establece propiedades que nos permitirán evaluar (calcular) límites de forma más directa, sin tener que recurrir a la definición $\varepsilon-\delta$
 
@@ -275,8 +318,17 @@ El siguiente teorema establece propiedades que nos permitirán evaluar (calcular
   \end{enumerate}
 \end{theorem}
 
+\begin{example}{}{}
+  Aplicando el álgebra de límites, calcule:
+  \begin{multicols}{2}
+    \begin{enumerate}
+      \item $\displaystyle{ \lim_{x \to 5 } = 5 }$
+    \end{enumerate}
+  \end{multicols}
+\end{example}
+
 \begin{notation}{}{}
-  Es importante saber leer e interpretar correctamente un teorema. Recordemos que un teorema es una proposición o afirmación matemática cuyo valor de verdad puede ser demostrado de manera lógica. Su estructura es la siguiente:
+  Es importante saber leer e interpretar correctamente un teorema en matemática. Recordemos que un \textbf{teorema} es una proposición o afirmación matemática cuyo valor de verdad puede ser demostrado de manera lógica. Su estructura es la siguiente:
   \begin{center}
     \textbf{Hipótesis + Conector lógico + Tesis}
   \end{center}
